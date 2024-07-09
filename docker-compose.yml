@@ -13,8 +13,8 @@ services:
       - VITE_APP_STORAGE_BACKEND=http
       - VITE_APP_DISABLE_TRACKING=true
       - PUBLIC_URL=https://${APP_HOST}
-      ports:
-      - "9013:80"
+    ports:
+    - "9013:80"
 
   storage:
     image: alswl/excalidraw-storage-backend:v2023.11.11
@@ -28,7 +28,9 @@ services:
 
   room:
     image: excalidraw/excalidraw-room:sha-49bf529
-    restart: unless-stopped   
+    restart: unless-stopped
+    ports:
+      - "9015:80"
 
   mongodb:
     image: mongo:7.0.5-jammy
@@ -54,7 +56,7 @@ services:
     networks:
       - draw-internal
     ports:
-      - "9015:8081"
+      - "9016:8081"
 
 networks:
   draw-internal:
