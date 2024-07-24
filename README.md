@@ -1,6 +1,6 @@
 # Self-Hosted excalidraw
 
-The goal is a docker-compose configuration for a fully self-hosted [Excalidraw](https://github.com/excalidraw/excalidraw) with collaboration support. The configuration is for a [traefik](https://github.com/traefik/traefik) setup and uses a [MongoDB](https://github.com/mongodb/mongo) for the storage. Also includes [mongo-express](https://github.com/mongo-express/mongo-express) as a MongoDB admin interface.
+The goal is a docker-compose configuration for a fully self-hosted [Excalidraw](https://github.com/excalidraw/excalidraw) with collaboration support. The configuration is for a [nginx](https://nginx.org/en/) setup and uses a [MongoDB](https://github.com/mongodb/mongo) for the storage. Also includes [mongo-express](https://github.com/mongo-express/mongo-express) as a MongoDB admin interface.
 
 The original version of excalidraw only supporting Firebase for the storage. For achieving a self-hosted storage, a modified version of excalidraw is used:
 
@@ -13,13 +13,14 @@ In combination with a http-storage:
 ## Prerequisites
 
 - Docker / Docker Compose
-- A traefik setup with a configured https entrypoint
-
+- Nginx
 ## Deploy
 
 Clone this repository: `git clone git@github.com:Someone0nEarth/excalidraw-self-hosted.git`
 
 Create a copy of the env-example: `cp .env-example .env` and modifying the `.env` with your values.
+
+Create a copy of the nginx-example.conf to your nginx configuration.
 
 Pull the images and start the containers: `docker-compose up -d`
 
