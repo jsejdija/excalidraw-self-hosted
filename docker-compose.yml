@@ -21,8 +21,6 @@ services:
     restart: unless-stopped
     environment:
       - STORAGE_URI=mongodb://${DB_USER}:${DB_PASS}@mongodb:27017
-    networks:
-      - draw-internal
     ports:
       - "9014:8080"
 
@@ -40,8 +38,7 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=${DB_PASS}
     volumes:
       - ${DB_VOLUME_PATH}:/data/db
-    networks:
-      - draw-internal
+    user: "1000"
 
   mongoexpress:
     image: mongo-express:latest
@@ -53,12 +50,5 @@ services:
     depends_on:
       - mongodb
     restart: unless-stopped
-    networks:
-      - draw-internal
     ports:
       - "9016:8081"
-
-networks:
-  draw-internal:
-    name: draw-internal
-    external: false
